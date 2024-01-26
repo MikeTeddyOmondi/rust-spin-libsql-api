@@ -1,0 +1,25 @@
+spin_manifest_version = 2
+
+[application]
+name = "spin-rust-api"
+version = "0.1.0"
+authors = ["MikeTeddyOmondi <mike_omondi@outlook.com>"]
+description = "API w/ Rust & Spin using LibSQL"
+
+[variables]
+turso_url = { default = "libsql://localhost:8080?tls=0" }
+turso_auth_token = { required = true }
+
+[[trigger.http]]
+route = "/..."
+component = "spin-rust-api"
+
+[component.spin-rust-api]
+source = "target/wasm32-wasi/release/spin_rust_api.wasm"
+allowed_outbound_hosts = ["libsql://localhost:8080"]
+[component.spin-rust-api.build]
+command = "cargo build --target wasm32-wasi --release"
+watch = ["src/**/*.rs", "Cargo.toml"]
+[component.spin-rust-api.variables]
+turso_url = "{{ turso_url }}"
+turso_auth_token = "{{ turso_auth_token }}"

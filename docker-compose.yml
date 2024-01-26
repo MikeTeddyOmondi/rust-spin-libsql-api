@@ -1,0 +1,13 @@
+services:
+  app:
+    image: ranckosolutionsinc/spin-libsql-api:0.1-spin-2.1
+    platform: wasi/wasm
+    runtime: io.containerd.spin.v2
+    ports:
+      - 33000:3000
+    networks:
+      - spin-network
+
+networks:
+  spin-network:
+    name: spin-network

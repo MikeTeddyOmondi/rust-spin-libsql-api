@@ -1,0 +1,16 @@
+[package]
+name = "spin-rust-api"
+authors = ["MikeTeddyOmondi <mike_omondi@outlook.com>"]
+description = "API w/ Rust & SPin"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+anyhow = "1"
+http = "0.2"
+libsql-client = { version = "0.33.4", default-features = false, features = ["spin_backend"] }
+# libsql-client = { git = "https://github.com/libsql/libsql-client-rs", version = "0.31.4", default-features = false, features = ["spin_backend"] }
+spin-sdk = { git = "https://github.com/fermyon/spin", tag = "v2.0.1" }
